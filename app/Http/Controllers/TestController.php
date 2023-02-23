@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
+
     public function index(){
+        dd('test');
 
         // Eloquent(エロくアント)
         $values = Test::all();
@@ -18,6 +20,8 @@ class TestController extends Controller
         $find = Test::findOrFail(1);
 
         $where = Test::where('text' , '=', 'aaa')->get();
+
+        dd('test');
 
 
         // クエリビルダ
