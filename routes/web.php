@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\ContactFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test/test', [TestController::class, 'index']);
+
+// Route::resource('contacts', ContactFormController::class);
+Route::prefix('contacts')->middleware('auth')
+->controller(ContactFormController::class)
+->name('contacts.')
+->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    // Route::get('/show', 'show')->name('show');
+    // Route::get('/') 
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
